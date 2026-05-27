@@ -2,7 +2,7 @@ from shape import Shape
 
 
 class Square(Shape):
-    def __init__(self, side, shape_id, shape_type):
+    def __init__(self,shape_id, shape_type, side):
         super().__init__(shape_id, shape_type)
         self.side = side
 
