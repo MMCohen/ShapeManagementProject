@@ -32,9 +32,27 @@ class Square(Shape):
 
         return self.side * 4
 
+    def to_dict(self):
+        """
+        :return: dict with the info of the instance
+        """
+        self.logger.info("create dict | id=%s", self.shape_id)
+        return {
+            "id" : self.shape_id,
+            "type" : self.shape_type,
+            "side" : self.side
+        }
+
+
 if __name__ == "__main__":
-    s1 = Square(5, "square",5)
+    #create test loger
+    logging.basicConfig(level=logging.DEBUG)
+    logger = logging.getLogger()
+
+    s1 = Square(5, "square",5, logger)
     assert s1.get_perimeter() == 20
     assert s1.get_area() == 25
+
     print(s1.get_perimeter())
     print(s1.get_area())
+    print(s1.to_dict())

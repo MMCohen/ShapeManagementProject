@@ -26,10 +26,19 @@ class Circle(Shape):
         """
         :return: the perimeter of the circle
         """
-
         self.logger.info("get perimeter | id=%s shape=%s radius=%s ",self.shape_id, self.shape_type, self.radius)
-
         return 2 * self.radius * Circle.PI
+
+    def to_dict(self):
+        """
+        :return: dict with the info of the instance
+        """
+        self.logger.info("create dict | id=%s", self.shape_id)
+        return {
+            "id" : self.shape_id,
+            "type" : self.shape_type,
+            "radius" : self.radius
+        }
 
 if __name__ == "__main__":
     c1 = Circle(1, "circle", 10)

@@ -28,6 +28,19 @@ class Rectangle(Shape):
 
         return 2 * (self.length + self.width)
 
+    def to_dict(self):
+        """
+        :return: dict with the info of the instance
+        """
+        self.logger.info("create dict | id=%s", self.shape_id)
+        return {
+            "id" : self.shape_id,
+            "type" : self.shape_type,
+            "length" : self.length,
+            "width" : self.width
+        }
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     logger = logging.getLogger()
