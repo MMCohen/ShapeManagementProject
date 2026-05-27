@@ -12,3 +12,10 @@ class Rectangle(Shape):
 
     def get_perimeter(self):
         return 2 * (self.length + self.width)
+
+if __name__ == "__main__":
+    r1 = Rectangle(1, "Rectangle", 10, 20)
+    assert r1.get_perimeter() == 60
+    assert r1.get_area() == 200
+    print(r1.get_perimeter())
+    print(r1.get_area())

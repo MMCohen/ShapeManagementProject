@@ -11,3 +11,10 @@ class Square(Shape):
 
     def get_perimeter(self):
         return self.side * 4
+
+if __name__ == "__main__":
+    s1 = Square(5, "square",5)
+    assert s1.get_perimeter() == 20
+    assert s1.get_area() == 25
+    print(s1.get_perimeter())
+    print(s1.get_area())
