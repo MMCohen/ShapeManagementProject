@@ -2,14 +2,26 @@ from shape import Shape
 
 
 class Square(Shape):
+    """
+    class Square Inherits form Shape class.
+    implements the functions from Shape class
+    """
     def __init__(self,shape_id, shape_type, side):
         super().__init__(shape_id, shape_type)
         self.side = side
 
-    def get_area(self):
+
+    def get_area(self) -> int:
+        """
+        :return: the area of the square calculate by side * side
+        """
         return self.side * self.side
 
-    def get_perimeter(self):
+
+    def get_perimeter(self) -> int:
+        """
+        :return: the perimeter of the square
+        """
         return self.side * 4
 
 if __name__ == "__main__":
