@@ -83,3 +83,15 @@ class ShapeManager:
         self.logger.debug("list of objects=%s", self.shapes)
         return None
 
+    def get_shape_id(self) -> int:
+        """
+        response on generating a new unique id.
+        checks the max id in the shapes list
+        and return the next one
+        :return:
+        """
+        if self.shapes:
+            return max([shape.shape_id for shape in self.shapes]) + 1
+        return 1
+
+
