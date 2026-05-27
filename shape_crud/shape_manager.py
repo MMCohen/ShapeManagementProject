@@ -1,4 +1,6 @@
 import logging
+import json
+from json import JSONDecodeError
 
 from square import Square
 from circle import Circle
@@ -93,5 +95,12 @@ class ShapeManager:
         if self.shapes:
             return max([shape.shape_id for shape in self.shapes]) + 1
         return 1
+
+
+    def get_logger(self) -> logging.Logger:
+        logging.basicConfig(level=logging.DEBUG)
+        logger1 = logging.getLogger()
+        return logger1
+        pass
 
 
