@@ -10,7 +10,7 @@ from rectangle import Rectangle
 class ShapeManager:
     def __init__(self):
         self.shapes: list[object] = []
-        self.logger: logging.Logger = self.get_logger() # todo: =============================
+        self.logger: logging.Logger = self.get_logger()
         self.load_from_json()
 
     def create_shape(self,shape_type, shape_id = None, *args):
@@ -98,9 +98,15 @@ class ShapeManager:
 
 
     def get_logger(self) -> logging.Logger:
-        logging.basicConfig(level=logging.DEBUG)
-        logger1 = logging.getLogger()
+        logger1 = logging.getLogger(__name__)
+        logger1.setLevel(logging.DEBUG)
+
+        file_handler = logging.FileHandler("log_project.log", encoding="utf-8")
+        formater = logging.Formatter("%(asctime)s | %(levelname)s | %(message)s")
+
+        file_handler.setFormatter(formater)
+        logger1.addHandler(file_handler)
+
         return logger1
-        pass
 
 
