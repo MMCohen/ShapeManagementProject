@@ -44,7 +44,14 @@ class ShapeManager:
 
 
     def get_all_shapes(self):
-        pass
+        """
+        prints every shape detail using the print_shape_details method
+        :return:
+        """
+        for shape_object in self.shapes:
+            shape_object.print_shape_details()
+
+        self.logger.info("done printing shapes details")
 
     def update_shape(self):
         pass
