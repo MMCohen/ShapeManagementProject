@@ -40,6 +40,17 @@ class Circle(Shape):
             "radius" : self.radius
         }
 
+
+    def print_shape_details(self):
+        """
+        prints the shape details
+        :return:
+        """
+        shape_details = f"id={self.shape_id} shape={self.shape_type} radius={self.radius} area={self.get_area()} perimeter={self.get_perimeter()}"
+        self.logger.debug("printing %s", shape_details)
+        print(shape_details)
+
+
 if __name__ == "__main__":
     c1 = Circle(1, "circle", 10)
     print(c1.get_perimeter())

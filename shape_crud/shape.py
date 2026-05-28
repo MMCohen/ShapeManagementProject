@@ -17,3 +17,6 @@ class Shape:
 
     def to_dict(self):
         pass
+
+    def print_shape_details(self):
+        pass

@@ -41,6 +41,16 @@ class Rectangle(Shape):
         }
 
 
+    def print_shape_details(self):
+        """
+        prints the shape details
+        :return:
+        """
+        shape_details = f"id={self.shape_id} shape={self.shape_type} length={self.length} width={self.width} area={self.get_area()} perimeter={self.get_perimeter()}"
+        self.logger.debug("printing %s", shape_details)
+        print(shape_details)
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     logger = logging.getLogger()

@@ -43,6 +43,14 @@ class Square(Shape):
             "side" : self.side
         }
 
+    def print_shape_details(self):
+        """
+        prints the shape details
+        :return:
+        """
+        shape_details = f"id={self.shape_id} shape={self.shape_type} side={self.side} area={self.get_area()} perimeter={self.get_perimeter()}"
+        self.logger.debug("printing %s", shape_details)
+        print(shape_details)
 
 if __name__ == "__main__":
     #create test loger
