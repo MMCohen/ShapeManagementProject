@@ -34,13 +34,26 @@ class ShapeManager:
                 side = args
                 temp_instance = Square(shape_id, shape_type, side, self.logger)
                 self.shapes.append(temp_instance)
+                self.logger.debug("created instance Square")
 
-            case "circle":
-                pass
-            case "rectangle":
-                pass
+            case "circle": # todo:============================================
+                radius = args
+                temp_instance = Circle(shape_id, shape_type, radius, self.logger)
+                self.shapes.append(temp_instance)
+                self.logger.debug("created instance Circle")
+
+
+            case "rectangle": # todo:============================================
+                length, width = args
+                temp_instance = Rectangle(shape_id, shape_type, length, width, self.logger)
+                self.shapes.append(temp_instance)
+                self.logger.debug("created instance Rectangle")
+
+
             case _:
-                raise ValueError(f"{shape_type} is not legal option")
+                message = f"{shape_type} is not legal option"
+                self.logger.error(message)
+                raise ValueError(message)
 
 
     def get_all_shapes(self):
