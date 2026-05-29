@@ -96,7 +96,7 @@ class ShapeManager:
 
     def load_from_json(self):
         try:
-            with open("shapes.json", "r", encoding="utf-8") as f:
+            with open(self.json_file_name, "r", encoding="utf-8") as f:
                 data = f.read()
                 self.logger.debug("opened json file. data=%s", data)
 
@@ -109,15 +109,19 @@ class ShapeManager:
                 shapes_lst = json.loads(data)
                 self.logger.info("converted json to list[dict] successfully")
 
-        except JSONDecodeError:
-            self.logger.error("not json format")
+        except JSONDecodeError as e:
+            self.logger.error("not json format | error= %s",e)
+            raise
+
+        except FileNotFoundError as e:
+            self.logger.error("file not found | error= %s",e)
             raise
 
         self.logger.info("start to convert each item into Shape object")
-        for shape in shapes_lst:
-            shape_id, shape_type, *dimensions = shape.values()
 
-            self.create_shape(shape_type, shape_id, dimensions) # todo:=================================================================
+        for shape in shapes_lst:
+            self.create_shape(shape)
+
         self.logger.info("finish converting items to Shape objects")
 
         # just for testing
