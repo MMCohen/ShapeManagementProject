@@ -9,51 +9,70 @@ from rectangle import Rectangle
 
 class ShapeManager:
     def __init__(self):
+        self.json_file_name = "shapes.json"
         self.shapes: list[object] = []
         self.logger: logging.Logger = self.get_logger()
         self.load_from_json()
 
-    def create_shape(self,shape_type, shape_id = None, *args):
-        """
-        gets the chosen shape and the dimensions
-        This function can be used both by the user from the main module
-        and the load_from_json() the convert the dicts into objects.
 
-        :param shape_id:
-        :param shape_type:
-        :param args:
+    def create_shape(self, shape_dict: dict): # todo: refactor to polimorphizem
+        """
+        gets dict with shape details. create an object.
+        update both the self.shapes and the json.
+
+        This function used both by the user from the main module
+        and from the load_from_json() the convert the dicts into objects.
+
+        :param shape_dict:
         :return:
         """
+
         # when converting json into object WILL NOT create a new id.
         # create shape id only for the user module.
-        if not shape_id:
-            shape_id = self.get_shape_id()
+        if not shape_dict.get("id"):
+            shape_dict["id"] = self.get_shape_id()
+
+
+        shape_id = shape_dict["id"]
+        shape_type = shape_dict["type"]
+        dimensions = shape_dict["dimensions"]
+
+        # TODO: ===================================
+        # I tried to send it directly to the class by:
+        # class_name = shape_type.title()
+        # class_name(shape_id, shape_type, self.logger, dimensions)
+        # it did not work. for later
+
+        self.logger.debug("try to create instance %s", shape_type)
+
+        is_create_object = False
 
         match shape_type:
             case "square":
-                side = args
-                temp_instance = Square(shape_id, shape_type, side, self.logger)
+                temp_instance = Square(shape_id, shape_type, self.logger, dimensions)
                 self.shapes.append(temp_instance)
-                self.logger.debug("created instance Square")
+                self.logger.debug("created instance %s successes", shape_type)
+                is_create_object = True
 
-            case "circle": # todo:============================================
-                radius = args
-                temp_instance = Circle(shape_id, shape_type, radius, self.logger)
+            case "circle":
+                temp_instance = Circle(shape_id, shape_type, self.logger, dimensions)
                 self.shapes.append(temp_instance)
-                self.logger.debug("created instance Circle")
+                self.logger.debug("created instance %s successes", shape_type)
+                is_create_object = True
 
-
-            case "rectangle": # todo:============================================
-                length, width = args
-                temp_instance = Rectangle(shape_id, shape_type, length, width, self.logger)
+            case "rectangle":
+                temp_instance = Rectangle(shape_id, shape_type, self.logger, dimensions)
                 self.shapes.append(temp_instance)
-                self.logger.debug("created instance Rectangle")
-
+                self.logger.debug("created instance %s successes", shape_type)
+                is_create_object = True
 
             case _:
                 message = f"{shape_type} is not legal option"
                 self.logger.error(message)
                 raise ValueError(message)
+
+        if is_create_object:
+            self.save_to_json()
 
 
     def get_all_shapes(self):

@@ -7,11 +7,11 @@ class Rectangle(Shape):
     class Rectangle Inherits form Shape class.
     implements the functions from Shape class
     """
-    def __init__(self,shape_id, shape_type, length, width, logger: logging.Logger):
+    def __init__(self,shape_id, shape_type, logger: logging.Logger, dimensions):
         super().__init__(shape_id, shape_type, logger)
-        logger.info("create instance of Square | id=%s shape=%s length=%s width=%s",shape_id, shape_type, length, width)
-        self.length = length
-        self.width = width
+        logger.info("create instance of Rectangle | id=%s shape=%s length&width=%s",shape_id, shape_type, dimensions)
+        self.length = dimensions[0]
+        self.width = dimensions[1]
 
     def get_area(self) -> int:
         """

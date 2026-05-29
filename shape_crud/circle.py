@@ -8,10 +8,10 @@ class Circle(Shape):
     implements the functions from Shape class
     """
     PI = 3.1415
-    def __init__(self,shape_id, shape_type, radius, logger: logging.Logger):
+    def __init__(self,shape_id, shape_type, logger: logging.Logger, dimensions):
         super().__init__(shape_id, shape_type, logger)
-        logger.info("create instance of circle | id=%s shape=%s radius=%s ",shape_id, shape_type, radius)
-        self.radius = radius
+        logger.info("create instance of circle | id=%s shape=%s radius=%s ",shape_id, shape_type, dimensions)
+        self.radius = dimensions[0]
 
     def get_area(self) -> int:
         """

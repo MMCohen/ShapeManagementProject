@@ -7,10 +7,10 @@ class Square(Shape):
     class Square Inherits form Shape class.
     implements the functions from Shape class
     """
-    def __init__(self,shape_id, shape_type, side, logger: logging.Logger):
+    def __init__(self,shape_id, shape_type, logger: logging.Logger, dimensions):
         super().__init__(shape_id, shape_type, logger)
-        logger.info("create instance of Square | id=%s shape=%s side=%s ",shape_id, shape_type, side)
-        self.side = side
+        logger.info("create instance of Square | id=%s shape=%s side=%s ",shape_id, shape_type, dimensions)
+        self.side = dimensions[0]
 
 
     def get_area(self) -> int:
