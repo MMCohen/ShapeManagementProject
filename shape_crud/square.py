@@ -40,7 +40,7 @@ class Square(Shape):
         return {
             "id" : self.shape_id,
             "type" : self.shape_type,
-            "side" : self.side
+            "dimensions" : [self.side]
         }
 
     def print_shape_details(self):
