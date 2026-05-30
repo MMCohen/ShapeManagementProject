@@ -104,8 +104,18 @@ class ShapeManager:
             raise ValueError(message)
 
 
-    def delete_shape(self):
-        pass
+    def delete_shape(self, shape_id):
+        is_shape_id_in_shapes = False
+        shape_idx = ""
+        for idx, shape in enumerate(self.shapes):
+            if shape.shape_id == shape_id:
+                is_shape_id_in_shapes = True
+                shape_idx = idx
+            if is_shape_id_in_shapes:
+                break
+        if is_shape_id_in_shapes:
+            self.shapes.pop(shape_idx)
+            self.save_to_json()
 
     def save_to_json(self):
         shapes_lst = []
