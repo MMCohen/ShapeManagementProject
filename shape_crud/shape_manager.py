@@ -92,7 +92,13 @@ class ShapeManager:
         pass
 
     def save_to_json(self):
-        pass
+        shapes_lst = []
+        for shape in self.shapes:
+            shapes_lst.append(shape.to_dict())
+        if shapes_lst:
+            with open(self.json_file_name, "w", encoding="utf-8") as f:
+                json.dump(shapes_lst, f, indent=4)
+
 
     def load_from_json(self):
         try:
