@@ -26,10 +26,11 @@ class ShapeManager:
         :param shape_dict:
         :return:
         """
-
+        new_shape = False
         # when converting json into object WILL NOT create a new id.
         # create shape id only for the user module.
         if not shape_dict.get("id"):
+            new_shape = True
             shape_dict["id"] = self.get_shape_id()
 
 
@@ -72,6 +73,8 @@ class ShapeManager:
                 raise ValueError(message)
 
         if is_create_object:
+            if new_shape:
+                self.print_to_screen("shape added!")
             self.save_to_json()
 
 
