@@ -85,8 +85,24 @@ class ShapeManager:
 
         self.logger.info("done printing shapes details")
 
-    def update_shape(self):
-        pass
+    def update_shape(self, shape_id: int, dimensions: list):
+        is_shape_id_in_shapes = False
+        for idx, shape in enumerate(self.shapes):
+            if shape.shape_id == shape_id:
+                is_shape_id_in_shapes = True
+                shape_dict = shape.to_dict()
+                shape_dict["dimensions"] = dimensions
+                self.delete_shape(shape_id)
+                self.create_shape(shape_dict)
+            if is_shape_id_in_shapes:
+                break
+        if is_shape_id_in_shapes:
+            self.logger.info("shape updated")
+        else:
+            message = f"shape could NOT be update"
+            self.logger.info(message)
+            raise ValueError(message)
+
 
     def delete_shape(self):
         pass
