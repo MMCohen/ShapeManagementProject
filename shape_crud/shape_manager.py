@@ -120,6 +120,7 @@ class ShapeManager:
         if is_shape_id_in_shapes:
             self.shapes.pop(shape_idx)
             self.save_to_json()
+            self.print_to_screen("shape deleted!")
 
     def save_to_json(self):
         shapes_lst = []
