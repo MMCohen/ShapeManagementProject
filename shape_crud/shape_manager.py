@@ -81,7 +81,8 @@ class ShapeManager:
         :return:
         """
         for shape_object in self.shapes:
-            shape_object.print_shape_details()
+            shape = shape_object.to_dict()
+            self.print_to_screen(shape)
 
         self.logger.info("done printing shapes details")
 
